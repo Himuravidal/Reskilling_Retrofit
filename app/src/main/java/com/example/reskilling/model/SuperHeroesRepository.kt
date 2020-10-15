@@ -19,7 +19,6 @@ class SuperHeroesRepository(private val superHeroesDao: SuperHeroesDao) {
     // Este trae toda la tabla superHeroes entity
     val allSuperHeroesLiveData = superHeroesDao.showAllSuperHeroes()
 
-
     //La vieja confiable
     fun getDataFromServer() {
         val call = retroService.fetchAllSuperHeroes()
@@ -61,9 +60,6 @@ class SuperHeroesRepository(private val superHeroesDao: SuperHeroesDao) {
             Log.e("ERROR", it.message.toString())
         }
     }
-
-
-
 
     fun convert(listFromNetwork: List<SuperHeroe>): List<SuperHeroesEntity> {
         val listMutable = mutableListOf<SuperHeroesEntity>()
