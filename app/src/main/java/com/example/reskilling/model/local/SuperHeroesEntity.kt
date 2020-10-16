@@ -12,5 +12,6 @@ data class SuperHeroesEntity(@PrimaryKey @NonNull val id: Int,
                              val imageLg: String,
                              val name: String,
                              val alterEgos: String,
-                             val height: List<String>
+                             val height: List<String>,
+                             var favorite: Boolean = false
                             )

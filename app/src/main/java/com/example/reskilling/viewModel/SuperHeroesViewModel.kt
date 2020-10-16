@@ -12,6 +12,7 @@ class SuperHeroesViewModel(application: Application) :AndroidViewModel(applicati
 
     private val mRepository : SuperHeroesRepository
     val liveDataFromLocal : LiveData<List<SuperHeroesEntity>>
+    val allFavoritos : LiveData<List<SuperHeroesEntity>>
 
     init {
         val superHeroesDao = SuperHeroesDatabase.getDatabase(application).superHeroesDao()
@@ -19,6 +20,15 @@ class SuperHeroesViewModel(application: Application) :AndroidViewModel(applicati
         //mRepository.getDataFromServer()
         mRepository.getDataFromServerWithCorutines()
         liveDataFromLocal = mRepository.allSuperHeroesLiveData
+        allFavoritos = mRepository.allFavoritos
+    }
+
+    fun getSuperHeroesByID(id : Int): LiveData<SuperHeroesEntity> {
+        return mRepository.getSuperHeroesByID(id)
+    }
+
+    fun updateFav(id: Int, fav: Boolean) {
+        mRepository.updateFav(id, fav)
     }
 
 

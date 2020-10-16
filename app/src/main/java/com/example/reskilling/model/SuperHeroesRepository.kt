@@ -19,6 +19,18 @@ class SuperHeroesRepository(private val superHeroesDao: SuperHeroesDao) {
     // Este trae toda la tabla superHeroes entity
     val allSuperHeroesLiveData = superHeroesDao.showAllSuperHeroes()
 
+    val allFavoritos = superHeroesDao.allFavorites()
+
+    fun getSuperHeroesByID(id : Int) : LiveData<SuperHeroesEntity> {
+        return superHeroesDao.showOnSuperHeroesByID(id)
+    }
+
+    fun updateFav(id: Int, fav: Boolean) = CoroutineScope(Dispatchers.IO).launch {
+        superHeroesDao.updateFav(id, fav)
+    }
+
+
+
     //La vieja confiable
     fun getDataFromServer() {
         val call = retroService.fetchAllSuperHeroes()

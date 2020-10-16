@@ -53,7 +53,7 @@ class TestDao {
     }
 
     @Test
-    fun obtainSuperHeroeByID() = runBlocking {
+    fun obtainSuperHeroesByID() = runBlocking {
         //given
         val id = 1
         val superHeroeList = listOf(SuperHeroesEntity(1,
@@ -67,7 +67,6 @@ class TestDao {
         // then
         mSuperHeroesDao.showOnSuperHeroesByID(id).observeForever {
             assertThat(it.id).isEqualTo(id)
-
         }
     }
 
