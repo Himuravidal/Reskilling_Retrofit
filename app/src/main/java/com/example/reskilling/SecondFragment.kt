@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,16 +20,14 @@ import kotlinx.android.synthetic.main.fragment_second.*
  */
 class SecondFragment : Fragment() {
 
-    lateinit var mViewmodel : SuperHeroesViewModel
+    private val mViewmodel : SuperHeroesViewModel by activityViewModels()
     private var superHeroeID = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewmodel = ViewModelProvider(this).get(SuperHeroesViewModel::class.java)
         arguments?.let {
             superHeroeID = it.getInt("id")
         }
-
     }
 
     override fun onCreateView(
@@ -51,7 +50,6 @@ class SecondFragment : Fragment() {
                 Log.d("OBSEVADO", it.toString())
             }
         })
-
 
         switch1.setOnCheckedChangeListener { compoundButton, b ->
             mViewmodel.updateFav(superHeroeID, switch1.isChecked)

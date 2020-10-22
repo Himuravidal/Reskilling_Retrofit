@@ -22,7 +22,7 @@ class ApiTest {
     fun setUp() {
         mMockWebServer = MockWebServer()
         val mRetrofit = Retrofit.Builder()
-                .baseUrl(mMockWebServer.url(""))
+                .baseUrl(mMockWebServer.url("/"))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         mSuperHeroesApi = mRetrofit.create(SuperHeroeApi::class.java)
@@ -55,7 +55,8 @@ class ApiTest {
         assertThat(body).hasSize(1)
         assertThat(body?.get(0)?.id).isEqualTo(1)
         val request = mMockWebServer.takeRequest()
-       // assertThat(request.path).isEqualTo("/all.json")
+        println(request.path)
+        assertThat(request.path).isEqualTo("/all.json")
     }
 
 
